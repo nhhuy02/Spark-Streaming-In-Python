@@ -1,0 +1,32 @@
+Airflow giúp các bạn quản lý, lên lịch và thực thi tự động các Data pipeline hiệu quả hơn, Data Pipeline của bạn
+có thể bao gồm nhiều thao tác từ các hệ thống khác nhau và có thể có rất nhiều Data Pipeline khác nhau mà bạn cần
+phải quản lý cùng lúc. Như vậy, nếu có một lỗi nào đó xảy ra (API không hoạt động, Database không khả dụng) cũng sẽ
+mất rất nhiều thời gian để xử lý.
+
+Airflow là một trong những công cụ workflow automation và scheduling systems phổ biến nhất. Hoặc có thể hiểu rằng
+Airflow giúp bạn thực thi các Task theo đúng cách, đúng thời gian và đúng thứ tự. Một số ưu điểm của Airflow như sau:
+- Dynamic: Airflow được dựa trên các code Python, vậy nên trong Python có thể làm gì thì bạn hoàn toàn có thể làm vậy
+trong Airflow và các thao tác sẽ là không giới hạn.
+- Scalability: Bạn có thể chạy các Task song song với nhau, điều này tùy thuộc vào các tài nguyên tính toán mà bạn đang có.
+- UI: Airflow hỗ trợ giao diện Flask app để quản lý các workflows, và giúp bạn dễ dàng thay đổi, start và stop.
+- Extensibility: Bạn có thể tự tạo các Plugin để có thể tương tác với các thành phần khác.
+
+Trong Airflow có 5 thành phần chính:
+- Webserver: Một Flask Server để tạo UI tương tác.
+- Scheduler: Chịu trách nhiệm cho việc lập lịch cho các Task hoặc workflows.
+- Metastore: Một cơ sở dữ liệu (thường là PostgresDB, MySql hoăc SQLLite) sử dụng để lưu trữ các Metadata như trạng thái
+Task, Job, DAG, ...
+- Executor: Mô tả xem các Task của bạn sẽ được thực thi như thế nào.
+- Worker: Nơi thực sự thực thi các Task và trả về kết quả.
+
+Airflow quản lý tất cả các jobs bởi DAG (directed acyclic graphs hay đồ thị có hướng), cho phép quản lý các job dễ hiểu
+hất cũng như hỗ trợ các workloads phức tạp nhất.
+
+
+Chúng ta có hai mô hình để triển khai Airflow:
+- One Node Architecture: Tất cả các thành phần đều nằm chung trên một Node.
+- Multi Node Architecture: Sẽ có những Node chứa các thành phần như Metastore, Webserver,... chịu trách nhiệm quản lý
+các công việc. Và sẽ có các Node khác gọi là Worker Node chịu trách nhiệm thực thi các công việc đó.
+
+Cách thứ 2 sẽ có nhiều ưu điểm hơn do có thể xử lý nhiều Task song song với nhau, tuy nhiên sẽ đòi hòi kiến trúc và
+triển khai phức tạp hơn.
